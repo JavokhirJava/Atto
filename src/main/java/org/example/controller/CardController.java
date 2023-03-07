@@ -58,9 +58,3 @@ public class CardController {
         ComponentContainer.cardService.updateCard(number, exp_date);
     }
 }
-/* 1. Add Card (number) - (cartani profile ga ulab qo'yamiz.) (added_date)
-        Enter Card Number:
-        (kiritilgan number database da bo'lishi kerak.)
-    2. Card List (number,exp_date,balance)
-    3. Card Change Status
-    4. Delete Card*/

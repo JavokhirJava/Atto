@@ -30,12 +30,3 @@ public class ProfileController {
 }
 
 
-/**** Menu ***
- 1. Login
- Enter phone:
- Enter pswd:
- 2. Registration:
- Enter name:
- Enter surname:
- Enter phone:
- Enter pswd:*/

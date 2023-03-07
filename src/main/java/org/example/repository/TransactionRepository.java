@@ -57,7 +57,6 @@ public class TransactionRepository {
 
     public void dailyPayments(LocalDate time) {
         List<Transaction> transactionList = new LinkedList<>();
-
         String sql = String.format("select * from transaction where  date(transactionDate) = date('%s')", time);
         Connection con = ComponentContainer.getConnection();
         try {
@@ -75,14 +74,12 @@ public class TransactionRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        transactionList.toString();
+        System.out.println(transactionList.toString());
     }
 
-    public void todayPayments() {
-        List<Transaction> transactionList = new LinkedList<>();
-
+    public LinkedList<Transaction> todayPayments() {
+        LinkedList<Transaction> transactionList = new LinkedList<>();
         String sql = String.format("select * from transaction where type = 'PAYMENT' and date(transactionDate) = date(now()) order by transactionDate desc ");
-
         Connection con = ComponentContainer.getConnection();
         try {
             ResultSet resultSet = con.prepareStatement(sql).executeQuery();
@@ -96,15 +93,15 @@ public class TransactionRepository {
                 transactionList.add(transaction);
             }
             con.close();
+            return transactionList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        transactionList.toString();
     }
 
 
-    public void oraliqtolovlar(LocalDate fromDate, LocalDate toDate) {
-        List<Transaction> transactionList = new LinkedList<>();
+    public LinkedList<Transaction> oraliqtolovlar(LocalDate fromDate, LocalDate toDate) {
+        LinkedList<Transaction> transactionList = new LinkedList<>();
 
         String sql = String.format("select * from transaction where  date(transactionDate) >=date('%s') and date(transactionDate) <=date('%s') ", fromDate, toDate);
 
@@ -121,11 +118,10 @@ public class TransactionRepository {
                 transactionList.add(transaction);
             }
             con.close();
+            return transactionList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        transactionList.toString();
-
     }
 
     public List<Transaction> getTransactionByTerminal(String code) {

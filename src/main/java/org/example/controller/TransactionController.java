@@ -4,6 +4,7 @@ import org.example.container.ComponentContainer;
 import org.example.dto.Transaction;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TransactionController {
@@ -47,8 +48,10 @@ public class TransactionController {
     }
 
     private void todayPayments() {
-        ComponentContainer.transactionRepository.todayPayments();
-        System.out.println("Enter date");
+        LinkedList<Transaction> transactions = ComponentContainer.transactionRepository.todayPayments();
+        for(Transaction transaction : transactions){
+            System.out.println(transaction);
+        }
     }
 
     private void dailyPayments() {
@@ -62,8 +65,10 @@ public class TransactionController {
         LocalDate fromDate = LocalDate.parse(ComponentContainer.scanString.nextLine());
         System.out.println("Enter toDate : yyyy-MM-dd");
         LocalDate toDate = LocalDate.parse(ComponentContainer.scanString.nextLine());
-        ComponentContainer.transactionRepository.oraliqtolovlar(fromDate,toDate);
-
+        LinkedList<Transaction> transactions = ComponentContainer.transactionRepository.oraliqtolovlar(fromDate,toDate);
+        for (Transaction transaction : transactions){
+            System.out.println(transaction);
+        }
     }
 
     private void generalBalance() {

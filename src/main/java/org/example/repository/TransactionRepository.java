@@ -58,7 +58,7 @@ public class TransactionRepository {
     public void dailyPayments(LocalDate time) {
         List<Transaction> transactionList = new LinkedList<>();
 
-        String sql = String.format("select * from transaction where  date(transactiondate) = date('%s')", time);
+        String sql = String.format("select * from transaction where  date(transactionDate) = date('%s')", time);
         Connection con = ComponentContainer.getConnection();
         try {
             ResultSet resultSet = con.prepareStatement(sql).executeQuery();
@@ -81,7 +81,7 @@ public class TransactionRepository {
     public void todayPayments() {
         List<Transaction> transactionList = new LinkedList<>();
 
-        String sql = String.format("select * from transaction where type = 'PAYMENT' and date(transactiondate) = date(now()) order by created_date desc ");
+        String sql = String.format("select * from transaction where type = 'PAYMENT' and date(transactionDate) = date(now()) order by transactionDate desc ");
 
         Connection con = ComponentContainer.getConnection();
         try {
@@ -106,7 +106,7 @@ public class TransactionRepository {
     public void oraliqtolovlar(LocalDate fromDate, LocalDate toDate) {
         List<Transaction> transactionList = new LinkedList<>();
 
-        String sql = String.format("select * from transaction where  date(transactiondate) >=date('%s') and date(created_date) <=date('%s') ", fromDate, toDate);
+        String sql = String.format("select * from transaction where  date(transactionDate) >=date('%s') and date(transactionDate) <=date('%s') ", fromDate, toDate);
 
         Connection con = ComponentContainer.getConnection();
         try {
@@ -130,17 +130,17 @@ public class TransactionRepository {
 
     public List<Transaction> getTransactionByTerminal(String code) {
         List<Transaction> transactionList = new LinkedList<>();
-        String sql = String.format("select * from terminal where terminalnumber ='%s'", code);
+        String sql = String.format("select * from terminal where terminalNumber ='%s'", code);
         Connection con = ComponentContainer.getConnection();
         try {
             ResultSet resultSet = con.prepareStatement(sql).executeQuery();
             while (resultSet.next()) {
                 Transaction transaction = new Transaction();
-                transaction.setCreated_date(resultSet.getTimestamp("transactiondate").toLocalDateTime());
+                transaction.setCreated_date(resultSet.getTimestamp("transactionDate").toLocalDateTime());
                 transaction.setType(TransactionType.valueOf(resultSet.getString("type")));
                 transaction.setAmount(resultSet.getDouble("amount"));
                 transaction.setTerminal_code(resultSet.getString("terminalNumber"));
-                transaction.setCard_number(resultSet.getString("cardnumber"));
+                transaction.setCard_number(resultSet.getString("cardNumber"));
                 transactionList.add(transaction);
             }
             con.close();
@@ -161,8 +161,8 @@ public class TransactionRepository {
                 transaction.setCreated_date(resultSet.getTimestamp("transactionDate").toLocalDateTime());
                 transaction.setType(TransactionType.valueOf(resultSet.getString("type")));
                 transaction.setAmount(resultSet.getDouble("amount"));
-                transaction.setTerminal_code(resultSet.getString("terminalnumber"));
-                transaction.setCard_number(resultSet.getString("cardnumber"));
+                transaction.setTerminal_code(resultSet.getString("terminalNumber"));
+                transaction.setCard_number(resultSet.getString("cardNumber"));
                 transactionList.add(transaction);
             }
             con.close();

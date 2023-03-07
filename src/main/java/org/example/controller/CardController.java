@@ -18,20 +18,20 @@ public class CardController {
     }
 
     public Integer menu() {
-        System.out.println("1.Create Card :");
-        System.out.println("2.Card List :");
-        System.out.println("3.Update Card :");
-        System.out.println("4.Change Card Status :");
-        System.out.println("5.Delete Card :");
-        System.out.println("Enter action :");
+        System.out.println("1.Create Card ");
+        System.out.println("2.Card List ");
+        System.out.println("3.Update Card ");
+        System.out.println("4.Change Card Status ");
+        System.out.println("5.Delete Card ");
+        System.out.println("Enter action ");
         Integer n = ComponentContainer.scanInteger.nextInt();
         return n;
     }
 
     private void addCard() {
-        System.out.println("Enter number :");
+        System.out.println("Enter number ");
         String number = ComponentContainer.scanString.nextLine();
-        System.out.println("Enter exp_date :");
+        System.out.println("Enter exp_date ");
         String exp_date = ComponentContainer.scanString.nextLine();
         ComponentContainer.cardService.createCard(number, exp_date);
     }

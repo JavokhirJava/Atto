@@ -18,11 +18,11 @@ public class TerminalController {
     }
 
     public Integer menu() {
-        System.out.println("1.Create Terminal :");
-        System.out.println("2.Terminal List :");
-        System.out.println("3.Update Terminal :");
-        System.out.println("4.Change Terminal Status :");
-        System.out.println("5.Delete Terminal :");
+        System.out.println("1.Create Terminal ");
+        System.out.println("2.Terminal List ");
+        System.out.println("3.Update Terminal ");
+        System.out.println("4.Change Terminal Status ");
+        System.out.println("5.Delete Terminal ");
         System.out.println("Enter action :");
         Integer n = ComponentContainer.scanInteger.nextInt();
         return n;

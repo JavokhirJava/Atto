@@ -10,12 +10,11 @@ public class ProfileController {
                 case 2->changeProfileStatus();
                 default -> b=false;
             }
-
         }
     }
     public Integer menu() {
-        System.out.println("1.Profile List :");
-        System.out.println("2.Change Profile Status :");
+        System.out.println("1.Profile List ");
+        System.out.println("2.Change Profile Status ");
         System.out.println("Enter action :");
         Integer n = ComponentContainer.scanInteger.nextInt();
         return n;

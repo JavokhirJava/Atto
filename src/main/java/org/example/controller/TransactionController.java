@@ -25,15 +25,15 @@ public class TransactionController {
     }
 
     public Integer menu() {
-        System.out.println("Transaction Menu :");
-        System.out.println("1.Transaction List :");
-        System.out.println("2.Company Card Balance :");
-        System.out.println("3.Bugungi to'lovlar :");
-        System.out.println("4.Kunlik to'lovlar :");
-        System.out.println("5.Oraliq to'lovlar :");
-        System.out.println("6.Umumiy balance :");
-        System.out.println("7.Transaction by Terminal :");
-        System.out.println("8.Transaction By Card :");
+        System.out.println("Transaction Menu ");
+        System.out.println("1.Transaction List ");
+        System.out.println("2.Company Card Balance ");
+        System.out.println("3.Bugungi to'lovlar ");
+        System.out.println("4.Kunlik to'lovlar ");
+        System.out.println("5.Oraliq to'lovlar ");
+        System.out.println("6.Umumiy balance ");
+        System.out.println("7.Transaction by Terminal ");
+        System.out.println("8.Transaction By Card ");
         System.out.println("Enter action :");
         return ComponentContainer.scanInteger.nextInt();
     }

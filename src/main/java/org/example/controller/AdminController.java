@@ -19,10 +19,10 @@ public class AdminController {
 
     public Integer menu() {
         System.out.println("*** Admin Menu ***");
-        System.out.println("1.Card Menu :");
-        System.out.println("2.Terminal Menu :");
-        System.out.println("3.Profile Menu :");
-        System.out.println("4.Transaction Menu :");
+        System.out.println("1.Card Menu ");
+        System.out.println("2.Terminal Menu ");
+        System.out.println("3.Profile Menu ");
+        System.out.println("4.Transaction Menu ");
         System.out.println("Enter action :");
         return ComponentContainer.scanInteger.nextInt();
     }

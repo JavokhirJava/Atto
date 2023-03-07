@@ -1,8 +1,10 @@
 package org.example.controller;
 
 import org.example.container.ComponentContainer;
+import org.example.dto.Transaction;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class TransactionController {
     public void start() {
@@ -71,11 +73,10 @@ public class TransactionController {
     private void transactionByTerminal() {
         System.out.println("Enter code");
         ComponentContainer.transactionService.transactionByTerminal(ComponentContainer.scanString.nextLine());
-
     }
 
     private void transactionByCard() {
         System.out.println("Enter number");
-        ComponentContainer.transactionService.transactionByTerminal(ComponentContainer.scanString.nextLine());
+        ComponentContainer.transactionService.transactionByCard(ComponentContainer.scanString.nextLine());
     }
 }

@@ -5,6 +5,7 @@ import org.example.dto.Transaction;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TransactionService {
     public void addTransaction(Transaction transaction) {
@@ -38,10 +39,16 @@ public class TransactionService {
     }
 
     public void transactionByTerminal(String code) {
-        ComponentContainer.transactionRepository.getTransactionByTerminal(code);
+        List<Transaction> transactions = ComponentContainer.transactionRepository.getTransactionByTerminal(code);
+        for(Transaction transaction : transactions){
+            System.out.println(transaction);
+        }
     }
 
     public void transactionByCard(String number) {
-        ComponentContainer.transactionRepository.getTransactionByCard(number);
+        List<Transaction> transactions = ComponentContainer.transactionRepository.getTransactionByCard(number);
+        for(Transaction transaction : transactions){
+            System.out.println(transaction);
+        }
     }
 }

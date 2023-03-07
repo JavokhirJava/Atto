@@ -130,7 +130,7 @@ public class TransactionRepository {
 
     public List<Transaction> getTransactionByTerminal(String code) {
         List<Transaction> transactionList = new LinkedList<>();
-        String sql = String.format("select * from terminal where terminalNumber ='%s'", code);
+        String sql = String.format("select * from transaction where terminalNumber ='%s'", code);
         Connection con = ComponentContainer.getConnection();
         try {
             ResultSet resultSet = con.prepareStatement(sql).executeQuery();
@@ -152,7 +152,7 @@ public class TransactionRepository {
     }
     public List<Transaction> getTransactionByCard(String number) {
         List<Transaction> transactionList = new LinkedList<>();
-        String sql = String.format("select * from terminal where cardNumber ='%s'", number);
+        String sql = String.format("select * from transaction where cardNumber ='%s'", number);
         Connection con = ComponentContainer.getConnection();
         try {
             ResultSet resultSet = con.prepareStatement(sql).executeQuery();
@@ -169,7 +169,6 @@ public class TransactionRepository {
             return transactionList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
-
         }
     }
 }

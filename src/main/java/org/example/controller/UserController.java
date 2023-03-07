@@ -64,13 +64,13 @@ public class UserController {
 
     public Integer userMenu() {
         System.out.println("**** User Menu ****");
-        System.out.println("1.Add Card :");
-        System.out.println("2.Card List :");
-        System.out.println("3.Card Change Status :");
-        System.out.println("4.Delete Card :");
-        System.out.println("5.Refill :");
-        System.out.println("6.Transaction :");
-        System.out.println("7.Make Payment :");
+        System.out.println("1.Add Card ");
+        System.out.println("2.Card List ");
+        System.out.println("3.Card Change Status ");
+        System.out.println("4.Delete Card ");
+        System.out.println("5.Refill ");
+        System.out.println("6.Transaction ");
+        System.out.println("7.Make Payment ");
         return ComponentContainer.scanInteger.nextInt();
     }
 }

@@ -1,8 +1,10 @@
 package org.example.controller;
 
 import org.example.container.ComponentContainer;
+import org.example.service.CardService;
 
 public class CardController {
+    private CardService cardService;
     public void start() {
         boolean b = true;
         while (b) {
@@ -33,21 +35,21 @@ public class CardController {
         String number = ComponentContainer.scanString.nextLine();
         System.out.println("Enter exp_date ");
         String exp_date = ComponentContainer.scanString.nextLine();
-        ComponentContainer.cardService.createCard(number, exp_date);
+        cardService.createCard(number, exp_date);
     }
 
     private void cardList() {
-        ComponentContainer.cardService.cardList();
+        cardService.cardList();
     }
 
     private void cardChangeStatus() {
         System.out.println("Enter Card Number :");
-        ComponentContainer.cardService.chStatusCByCardNumber(ComponentContainer.scanString.nextLine());
+        cardService.chStatusCByCardNumber(ComponentContainer.scanString.nextLine());
     }
 
     private void deleteCard() {
         System.out.println("Enter Card Number :");
-        ComponentContainer.cardService.deleteCard(ComponentContainer.scanString.nextLine());
+        cardService.deleteCard(ComponentContainer.scanString.nextLine());
     }
 
     private void updateCard() {
@@ -55,6 +57,10 @@ public class CardController {
         String number = ComponentContainer.scanString.nextLine();
         System.out.println("Enter exp_date :");
         String exp_date = ComponentContainer.scanString.nextLine();
-        ComponentContainer.cardService.updateCard(number, exp_date);
+        cardService.updateCard(number, exp_date);
+    }
+
+    public void setCardService(CardService cardService) {
+        this.cardService = cardService;
     }
 }

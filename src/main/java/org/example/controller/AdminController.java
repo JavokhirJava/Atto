@@ -4,6 +4,11 @@ import org.example.container.ComponentContainer;
 import org.example.service.AdminService;
 
 public class AdminController {
+    private CardController cardController;
+    private TerminalController terminalController;
+    private ProfileController profileController;
+    private TransactionController transactionController;
+
     public void start() {
         boolean b = true;
         while (b) {
@@ -28,19 +33,34 @@ public class AdminController {
     }
 
     public void cardMenu() {
-        ComponentContainer.cardController.start();
+        cardController.start();
     }
 
     public void terminalMenu() {
-        ComponentContainer.terminalController.start();
+        terminalController.start();
     }
 
     public void profileMenu() {
-        ComponentContainer.profileController.start();
+        profileController.start();
     }
 
     public void transactionMenu() {
-        ComponentContainer.transactionController.start();
+        transactionController.start();
     }
 
+    public void setCardController(CardController cardController) {
+        this.cardController = cardController;
+    }
+
+    public void setTerminalController(TerminalController terminalController) {
+        this.terminalController = terminalController;
+    }
+
+    public void setProfileController(ProfileController profileController) {
+        this.profileController = profileController;
+    }
+
+    public void setTransactionController(TransactionController transactionController) {
+        this.transactionController = transactionController;
+    }
 }

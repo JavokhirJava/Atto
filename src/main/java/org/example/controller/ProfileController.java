@@ -1,7 +1,10 @@
 package org.example.controller;
 
 import org.example.container.ComponentContainer;
+import org.example.service.AdminService;
+
 public class ProfileController {
+    private AdminService aService;
     public void start() {
         boolean b = true;
         while (b) {
@@ -20,11 +23,15 @@ public class ProfileController {
         return n;
     }
     private void profileList() {
-        ComponentContainer.aService.profileList();
+        aService.profileList();
     }
     private void changeProfileStatus() {
         System.out.println("Enter profile phone :");
-        ComponentContainer.aService.changeProfileStatus(ComponentContainer.scanString.nextLine());
+        aService.changeProfileStatus(ComponentContainer.scanString.nextLine());
+    }
+
+    public void setaService(AdminService aService) {
+        this.aService = aService;
     }
 }
 

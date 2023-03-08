@@ -2,12 +2,14 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.dto.Profile;
+import org.example.service.AuthService;
 import org.example.status.ProfileStatus;
 import org.example.util.MD5Util;
 
 import static java.time.LocalDateTime.now;
 
 public class AuthController {
+    private AuthService authService;
     public void start() {
         boolean b = true;
         while (b) {
@@ -33,7 +35,7 @@ public class AuthController {
         String phone = ComponentContainer.scanString.nextLine();
         System.out.println("Enter password :");
         String password = ComponentContainer.scanString.nextLine();
-        ComponentContainer.authService.login(phone, MD5Util.encode(password));
+        authService.login(phone, MD5Util.encode(password));
     }
     public void registration() {
         System.out.println("Enter name ");
@@ -46,6 +48,9 @@ public class AuthController {
         String password = ComponentContainer.scanString.nextLine();
 
         Profile profile = new Profile(name, surname, phone, MD5Util.encode(password), now(), ProfileStatus.BLOCKED, "USER");
-        ComponentContainer.authService.registration(profile);
+        authService.registration(profile);
+    }
+    public void setAuthService(AuthService authService) {
+        this.authService = authService;
     }
 }

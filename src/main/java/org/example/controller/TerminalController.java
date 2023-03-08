@@ -1,8 +1,10 @@
 package org.example.controller;
 
 import org.example.container.ComponentContainer;
+import org.example.service.TerminalService;
 
 public class TerminalController {
+    private TerminalService terminalService;
     public void start() {
         boolean b = true;
         while (b) {
@@ -33,11 +35,11 @@ public class TerminalController {
         String code = ComponentContainer.scanString.nextLine();
         System.out.println("Enter Terminal Address :");
         String address = ComponentContainer.scanString.nextLine();
-        ComponentContainer.terminalService.createTerminal(code, address);
+        terminalService.createTerminal(code, address);
     }
 
     private void terminalList() {
-        ComponentContainer.terminalService.terminalList();
+        terminalService.terminalList();
     }
 
     private void updateTerminal() {
@@ -45,16 +47,19 @@ public class TerminalController {
         String code = ComponentContainer.scanString.nextLine();
         System.out.println("Enter Address :");
         String address = ComponentContainer.scanString.nextLine();
-        ComponentContainer.terminalService.updateTerminal(code, address);
+        terminalService.updateTerminal(code, address);
     }
 
     private void changeTerminalStatus() {
         System.out.println("Enter terminal code :");
-        ComponentContainer.terminalService.changeStatusTerminal(ComponentContainer.scanString.nextLine());
+        terminalService.changeStatusTerminal(ComponentContainer.scanString.nextLine());
     }
 
     private void delete() {
-        ComponentContainer.terminalService.deleteTerminal();
+        terminalService.deleteTerminal();
     }
 
+    public void setTerminalService(TerminalService terminalService) {
+        this.terminalService = terminalService;
+    }
 }

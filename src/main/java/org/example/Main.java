@@ -5,6 +5,8 @@ import org.example.controller.AuthController;
 import org.example.controller.ProfileController;
 import org.example.database.DataBase;
 import org.example.util.MD5Util;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
@@ -17,7 +19,8 @@ public class Main {
         DataBase.createTableTerminal();
         DataBase.createTableTransaction();
 
-        AuthController authController=new AuthController();
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+        AuthController authController= (AuthController) context.getBean("authController");
         authController.start();
     }
 }

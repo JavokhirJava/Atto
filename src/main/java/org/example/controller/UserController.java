@@ -2,8 +2,12 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.dto.Profile;
+import org.example.repository.CardRepository;
+import org.example.service.UserService;
 
 public class UserController {
+    private UserService uService;
+    private CardRepository cRepository;
     public void start() {
         boolean b = true;
         while (b) {
@@ -25,11 +29,11 @@ public class UserController {
         String number = ComponentContainer.scanString.nextLine();
         System.out.println("Enter Terminal Code :");
         String code = ComponentContainer.scanString.nextLine();
-        ComponentContainer.uService.makePayment(number,code,ComponentContainer.profile);
+        uService.makePayment(number,code,ComponentContainer.profile);
     }
 
     private void transaction() {
-        ComponentContainer.uService.transaction(ComponentContainer.cRepository.cardListByPhone(ComponentContainer.profile));
+        uService.transaction(cRepository.cardListByPhone(ComponentContainer.profile));
     }
 
     private void refill() {
@@ -39,27 +43,27 @@ public class UserController {
         String code = ComponentContainer.scanString.nextLine();
         System.out.println("Enter balanced ");
         Double balance = ComponentContainer.scanDouble.nextDouble();
-        ComponentContainer.uService.refill(number, code, balance);
+        uService.refill(number, code, balance);
     }
 
     private void deleteCard() {
         System.out.println("Enter card Number :");
-        ComponentContainer.uService.deleteCard(ComponentContainer.scanString.nextLine(), ComponentContainer.profile);
+        uService.deleteCard(ComponentContainer.scanString.nextLine(), ComponentContainer.profile);
     }
 
     private void cchStatus() {
         System.out.println("Enter card Number : ");
-        ComponentContainer.uService.changeCardStatus(ComponentContainer.scanString.nextLine(), ComponentContainer.profile);
+        uService.changeCardStatus(ComponentContainer.scanString.nextLine(), ComponentContainer.profile);
     }
 
     private void cardList() {
-        ComponentContainer.uService.cardList(ComponentContainer.profile);
+        uService.cardList(ComponentContainer.profile);
     }
 
     private void addCard() {
         System.out.println("Enter card number :");
         String card = ComponentContainer.scanString.nextLine();
-        ComponentContainer.uService.addCard(card, ComponentContainer.profile);
+        uService.addCard(card, ComponentContainer.profile);
     }
 
     public Integer userMenu() {
@@ -72,5 +76,13 @@ public class UserController {
         System.out.println("6.Transaction ");
         System.out.println("7.Make Payment ");
         return ComponentContainer.scanInteger.nextInt();
+    }
+
+    public void setuService(UserService uService) {
+        this.uService = uService;
+    }
+
+    public void setcRepository(CardRepository cRepository) {
+        this.cRepository = cRepository;
     }
 }

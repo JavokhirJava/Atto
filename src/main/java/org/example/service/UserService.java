@@ -4,6 +4,9 @@ import org.example.container.ComponentContainer;
 import org.example.dto.Card;
 import org.example.dto.Profile;
 import org.example.dto.Transaction;
+import org.example.repository.CardRepository;
+import org.example.repository.TerminalRepository;
+import org.example.repository.TransactionRepository;
 import org.example.status.CardStatus;
 import org.example.status.TransactionType;
 
@@ -14,42 +17,45 @@ import java.util.List;
 
 
 public class UserService {
+    private CardRepository cardRepository;
+    private TransactionRepository transactionRepository;
+    private TerminalRepository terminalRepository;
     public void addCard(String cardNumber, Profile profile) {
-        if (ComponentContainer.cRepository.getCard(cardNumber) == null) {
+        if (cardRepository.getCard(cardNumber) == null) {
             System.err.println("Carta Bazadan topilmadi !");
         } else {
-            ComponentContainer.cRepository.updateCardToPhone(cardNumber, profile.getPhone());
+            cardRepository.updateCardToPhone(cardNumber, profile.getPhone());
         }
     }
 
     public void cardList(Profile profile) {
-        if (ComponentContainer.cRepository.cardListByPhone(profile) == null) {
+        if (cardRepository.cardListByPhone(profile) == null) {
             System.out.println("Sizda bitta ham karta yo'q !");
         } else {
-            ComponentContainer.cRepository.cardListByPhone(profile).forEach(card -> {
+            cardRepository.cardListByPhone(profile).forEach(card -> {
                 System.out.println("CardNumber : " + card.getNumber() + " exp_date : " + card.getExp_date() + " balance : " + card.getBalance());
             });
         }//number,exp_date,balance
     }
 
     public void changeCardStatus(String cardNumber, Profile profile) {
-        if (!ComponentContainer.cRepository.getCard(cardNumber).getPhone().equals(profile.getPhone()) || ComponentContainer.cRepository.getCard(cardNumber) == null) {
+        if (!cardRepository.getCard(cardNumber).getPhone().equals(profile.getPhone()) || cardRepository.getCard(cardNumber) == null) {
             System.err.println("Nimadur xato ketdi !!! ");
-        } else if (ComponentContainer.cRepository.getStatus(profile.getPhone()).equals(CardStatus.ACTIVE.toString())) {
-            ComponentContainer.cRepository.cChStatus(CardStatus.BLOCK.toString(), profile.getPhone());
-        } else if (ComponentContainer.cRepository.getStatus(profile.getPhone()).equals(CardStatus.BLOCK.toString())) {
-            ComponentContainer.cRepository.cChStatus(CardStatus.ACTIVE.toString(), profile.getPhone());
+        } else if (cardRepository.getStatus(profile.getPhone()).equals(CardStatus.ACTIVE.toString())) {
+            cardRepository.cChStatus(CardStatus.BLOCK.toString(), profile.getPhone());
+        } else if (cardRepository.getStatus(profile.getPhone()).equals(CardStatus.BLOCK.toString())) {
+            cardRepository.cChStatus(CardStatus.ACTIVE.toString(), profile.getPhone());
         }
     }
 
     public void deleteCard(String cardNumber, Profile profile) {
-        if (ComponentContainer.cRepository.getCard(cardNumber).getPhone().equals(profile.getPhone()))
-            ComponentContainer.cRepository.changePhone(cardNumber, null);
+        if (cardRepository.getCard(cardNumber).getPhone().equals(profile.getPhone()))
+            cardRepository.changePhone(cardNumber, null);
     }
 
     public void refill(String number, String code, Double balance) {
-        if (ComponentContainer.cRepository.getCard(number).getPhone().equals(ComponentContainer.profile.getPhone()) && ComponentContainer.terminalRepository.getTerminal(code) != null) {
-            ComponentContainer.cRepository.refill(number, code, balance, ComponentContainer.cRepository.getCard(number));
+        if (cardRepository.getCard(number).getPhone().equals(ComponentContainer.profile.getPhone()) && terminalRepository.getTerminal(code) != null) {
+            cardRepository.refill(number, code, balance, cardRepository.getCard(number));
         } else {
             System.err.println("Nimadur xato ketdi !!! ");
         }
@@ -57,7 +63,7 @@ public class UserService {
 
     public void transaction(List<Card> cardListByPhone) {
         List<Transaction> transactionList = new LinkedList<>();
-        for (Transaction transaction : ComponentContainer.transactionRepository.transactionList()) {
+        for (Transaction transaction : transactionRepository.transactionList()) {
             for (Card card : cardListByPhone) {
                 if (transaction.getCard_number().equals(card.getNumber())) {
                     transactionList.add(transaction);
@@ -69,12 +75,25 @@ public class UserService {
 
     public void makePayment(String number, String code, Profile profile) {
         Transaction transaction = null;
-        if (ComponentContainer.cRepository.getCard(number) == null || ComponentContainer.terminalRepository.getTerminal(code) == null || !ComponentContainer.cRepository.getCard(number).getPhone().equals(profile.getPhone()) ) {
+        if (cardRepository.getCard(number) == null || terminalRepository.getTerminal(code) == null || !cardRepository.getCard(number).getPhone().equals(profile.getPhone()) ) {
             System.out.println("Error ! ! ! ");
         } else {
             transaction=new Transaction(number,ComponentContainer.TOLL,code,TransactionType.PAYMENT, LocalDateTime.now());
-            ComponentContainer.cRepository.makePayment(number,code,ComponentContainer.TOLL,ComponentContainer.cRepository.getCard(number));
+            cardRepository.makePayment(number,code,ComponentContainer.TOLL,cardRepository.getCard(number));
         }
     }
+
+    public void setCardRepository(CardRepository cardRepository) {
+        this.cardRepository = cardRepository;
+    }
+
+    public void setTransactionRepository(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
+    public void setTerminalRepository(TerminalRepository terminalRepository) {
+        this.terminalRepository = terminalRepository;
+    }
 }
+
 //card_number,amount,terminal_code,type,created_date

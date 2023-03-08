@@ -4,6 +4,7 @@ import org.example.container.ComponentContainer;
 import org.example.dto.Card;
 import org.example.dto.Profile;
 import org.example.dto.Transaction;
+import org.example.service.TransactionService;
 import org.example.status.CardStatus;
 import org.example.status.ProfileStatus;
 import org.example.status.TransactionType;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CardRepository {
+    private TransactionService transactionService;
     public Integer createCard(String number, String exp_date) {
         String sql = String.format
                 ("insert into card (number,exp_date,created_date,status,balance)values('%s','%s',now(),'BLOCK',0)", number, exp_date);
@@ -213,7 +215,7 @@ public class CardRepository {
             int b = statement.executeUpdate();
             if (b > 0) {
                 System.err.println("Balance Success Updated !!!");
-                ComponentContainer.transactionService.addTransaction(new Transaction(number,balance,code, TransactionType.REFILL, LocalDateTime.now()));
+                transactionService.addTransaction(new Transaction(number,balance,code, TransactionType.REFILL, LocalDateTime.now()));
             } else {
                 System.out.println("Balance Not Updated");
             }
@@ -231,7 +233,7 @@ public class CardRepository {
             if (b > 0) {
                 generalBalance(ComponentContainer.generalBalance,balance);
                 System.err.println("Balance Success Updated !!!");
-                ComponentContainer.transactionService.addTransaction(new Transaction(number,balance,code, TransactionType.PAYMENT, LocalDateTime.now()));
+               transactionService.addTransaction(new Transaction(number,balance,code, TransactionType.PAYMENT, LocalDateTime.now()));
             } else {
                 System.out.println("Balance Not Updated");
             }
@@ -259,5 +261,9 @@ public class CardRepository {
 
     public void companyCardBalance(){
         System.out.println(getCard(ComponentContainer.generalBalance).getBalance());
+    }
+
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 }

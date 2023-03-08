@@ -1,12 +1,7 @@
 package org.example.container;
 
-import org.example.controller.*;
 import org.example.dto.Profile;
-import org.example.repository.CardRepository;
 import org.example.repository.ProfileRepository;
-import org.example.repository.TerminalRepository;
-import org.example.repository.TransactionRepository;
-import org.example.service.*;
 import org.example.status.ProfileStatus;
 
 import java.sql.Connection;
@@ -35,23 +30,7 @@ public class ComponentContainer {
     public static Scanner scanInteger = new Scanner(System.in);
     public static Scanner scanString = new Scanner(System.in);
     public static Scanner scanDouble = new Scanner(System.in);
-    public static UserController uController = new UserController();
-    public static AdminController aController = new AdminController();
-    public static CardController cardController = new CardController();
-    public static TerminalController terminalController = new TerminalController();
-    public static ProfileController profileController = new ProfileController();
-    public static TransactionController transactionController = new TransactionController();
-    public static UserService uService = new UserService();
-    public static AdminService aService = new AdminService();
-    public static ProfileService pService = new ProfileService();
-    public static CardService cardService = new CardService();
-    public static AuthService authService = new AuthService();
-    public static TerminalService terminalService = new TerminalService();
-    public static TransactionService transactionService = new TransactionService();
-    public static CardRepository cRepository = new CardRepository();
     public static ProfileRepository pRepository = new ProfileRepository();
-    public static TerminalRepository terminalRepository = new TerminalRepository();
-    public static TransactionRepository transactionRepository=new TransactionRepository();
 
     public static Connection getConnection() {
         try {

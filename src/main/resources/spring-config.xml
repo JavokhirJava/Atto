@@ -45,30 +45,34 @@
         <property name="pRepository" ref="profileRepository"/>
         <property name="uController" ref="userController"/>
      </bean>
-    <bean name="cardService" class="org.example.service.CardService">
 
+    <bean name="cardService" class="org.example.service.CardService">
+      <property name="cardRepository" ref="cardRepository"/>
     </bean>
     <bean name="userService" class="org.example.service.UserService">
-
+        <property name="transactionRepository" ref="transactionRepository"/>
+        <property name="cardRepository" ref="cardRepository"/>
+        <property name="terminalRepository" ref="terminalRepository"/>
     </bean>
     <bean name="adminService" class="org.example.service.AdminService">
-
+        <property name="profileRepository" ref="profileRepository"/>
     </bean>
     <bean name="terminalService" class="org.example.service.TerminalService">
-
+        <property name="terminalRepository" ref="terminalRepository"/>
     </bean>
     <bean name="transactionService" class="org.example.service.TransactionService">
-
+        <property name="cardRepository" ref="cardRepository"/>
+        <property name="transactionRepository" ref="transactionRepository"/>
     </bean>
 
+    <!--Repository-->
     <bean name="transactionRepository" class="org.example.repository.TransactionRepository">
-
     </bean>
     <bean name="cardRepository" class="org.example.repository.CardRepository">
-
+        <property name="transactionService" ref="transactionService"/>
     </bean>
     <bean name="profileRepository" class="org.example.repository.ProfileRepository">
-
     </bean>
+    <bean name="terminalRepository" class="org.example.repository.TerminalRepository"/>
 
   </beans>

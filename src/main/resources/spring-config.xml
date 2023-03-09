@@ -4,50 +4,42 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-<!--Controller-->
+    <!--Controller-->
     <bean name="authController" class="org.example.controller.AuthController">
-       <property name="authService" ref="authService"/>
+        <property name="authService" ref="authService"/>
     </bean>
-
     <bean name="cardController" class="org.example.controller.CardController">
-          <property name="cardService" ref="cardService"/>
+        <property name="cardService" ref="cardService"/>
     </bean>
-
     <bean name="profileController" class="org.example.controller.ProfileController">
-          <property name="aService" ref="adminService"/>
+        <property name="aService" ref="adminService"/>
     </bean>
-
     <bean name="terminalController" class="org.example.controller.TerminalController">
-          <property name="terminalService" ref="terminalService"/>
+        <property name="terminalService" ref="terminalService"/>
     </bean>
-
     <bean name="transactionController" class="org.example.controller.TransactionController">
-          <property name="cardRepository" ref="cardRepository"/>
-          <property name="transactionService" ref="transactionService"/>
-          <property name="transactionRepository" ref="transactionRepository"/>
+        <property name="cardRepository" ref="cardRepository"/>
+        <property name="transactionService" ref="transactionService"/>
+        <property name="transactionRepository" ref="transactionRepository"/>
     </bean>
-
     <bean name="adminController" class="org.example.controller.AdminController">
         <property name="cardController" ref="cardController"/>
         <property name="profileController" ref="profileController"/>
         <property name="terminalController" ref="terminalController"/>
         <property name="transactionController" ref="transactionController"/>
     </bean>
-
     <bean name="userController" class="org.example.controller.UserController">
         <property name="uService" ref="userService"/>
         <property name="cRepository" ref="cardRepository"/>
     </bean>
-
-<!--Services-->
+    <!--Services-->
     <bean name="authService" class="org.example.service.AuthService">
         <property name="aController" ref="adminController"/>
         <property name="pRepository" ref="profileRepository"/>
         <property name="uController" ref="userController"/>
-     </bean>
-
+    </bean>
     <bean name="cardService" class="org.example.service.CardService">
-      <property name="cardRepository" ref="cardRepository"/>
+        <property name="cardRepository" ref="cardRepository"/>
     </bean>
     <bean name="userService" class="org.example.service.UserService">
         <property name="transactionRepository" ref="transactionRepository"/>
@@ -64,7 +56,6 @@
         <property name="cardRepository" ref="cardRepository"/>
         <property name="transactionRepository" ref="transactionRepository"/>
     </bean>
-
     <!--Repository-->
     <bean name="transactionRepository" class="org.example.repository.TransactionRepository">
     </bean>
@@ -74,5 +65,4 @@
     <bean name="profileRepository" class="org.example.repository.ProfileRepository">
     </bean>
     <bean name="terminalRepository" class="org.example.repository.TerminalRepository"/>
-
-  </beans>
+</beans>

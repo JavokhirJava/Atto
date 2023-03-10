@@ -9,13 +9,12 @@ import org.example.repository.TerminalRepository;
 import org.example.repository.TransactionRepository;
 import org.example.status.CardStatus;
 import org.example.status.TransactionType;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-
-
-
+@Component
 public class UserService {
     private CardRepository cardRepository;
     private TransactionRepository transactionRepository;

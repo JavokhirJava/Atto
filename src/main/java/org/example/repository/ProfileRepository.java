@@ -3,11 +3,12 @@ package org.example.repository;
 import org.example.container.ComponentContainer;
 import org.example.dto.Profile;
 import org.example.status.ProfileStatus;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-
+@Repository
 public class ProfileRepository {
     public boolean login(String phone, String password) {
         Connection con = ComponentContainer.getConnection();

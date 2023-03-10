@@ -3,9 +3,16 @@ package org.example.service;
 import org.example.container.ComponentContainer;
 import org.example.repository.ProfileRepository;
 import org.example.status.ProfileStatus;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AdminService {
     private ProfileRepository profileRepository;
+
+    public AdminService(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
+    }
+
     public void profileList() {
         profileRepository.profileList().forEach(System.out::println);
     }
@@ -19,8 +26,8 @@ public class AdminService {
             profileRepository.changeStatusProfile("ACTIVE",phone);
         }
     }
-
-    public void setProfileRepository(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
+//
+//    public void setProfileRepository(ProfileRepository profileRepository) {
+//        this.profileRepository = profileRepository;
+//    }
 }

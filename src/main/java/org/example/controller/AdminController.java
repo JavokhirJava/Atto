@@ -2,7 +2,9 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.service.AdminService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AdminController {
     private CardController cardController;
     private TerminalController terminalController;
@@ -21,7 +23,6 @@ public class AdminController {
             }
         }
     }
-
     public Integer menu() {
         System.out.println("*** Admin Menu ***");
         System.out.println("1.Card Menu ");

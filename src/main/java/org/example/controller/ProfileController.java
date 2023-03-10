@@ -2,7 +2,9 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.service.AdminService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProfileController {
     private AdminService aService;
     public void start() {

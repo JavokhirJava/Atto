@@ -3,7 +3,9 @@ package org.example.service;
 import org.example.container.ComponentContainer;
 import org.example.repository.CardRepository;
 import org.example.status.CardStatus;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CardService {
     private CardRepository cardRepository;
     public void createCard(String number, String exp_date) {

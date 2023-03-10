@@ -4,11 +4,12 @@ import org.example.container.ComponentContainer;
 import org.example.dto.Transaction;
 import org.example.repository.CardRepository;
 import org.example.repository.TransactionRepository;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
+@Component
 public class TransactionService {
     private TransactionRepository transactionRepository;
     private CardRepository cardRepository;

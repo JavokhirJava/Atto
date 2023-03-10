@@ -5,10 +5,14 @@ import org.example.dto.Profile;
 import org.example.service.AuthService;
 import org.example.status.ProfileStatus;
 import org.example.util.MD5Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import static java.time.LocalDateTime.now;
-
+@Controller
 public class AuthController {
+    @Autowired
     private AuthService authService;
     public void start() {
         boolean b = true;
@@ -49,8 +53,5 @@ public class AuthController {
 
         Profile profile = new Profile(name, surname, phone, MD5Util.encode(password), now(), ProfileStatus.BLOCKED, "USER");
         authService.registration(profile);
-    }
-    public void setAuthService(AuthService authService) {
-        this.authService = authService;
     }
 }

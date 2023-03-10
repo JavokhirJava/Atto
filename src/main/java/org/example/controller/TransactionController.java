@@ -6,11 +6,12 @@ import org.example.repository.CardRepository;
 import org.example.repository.TerminalRepository;
 import org.example.repository.TransactionRepository;
 import org.example.service.TransactionService;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-
+@Component
 public class TransactionController {
     private TransactionService transactionService;
     private TransactionRepository transactionRepository;

@@ -4,65 +4,25 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="org.example"/>
     <!--Controller-->
-    <bean name="authController" class="org.example.controller.AuthController">
-        <property name="authService" ref="authService"/>
-    </bean>
-    <bean name="cardController" class="org.example.controller.CardController">
-        <property name="cardService" ref="cardService"/>
-    </bean>
-    <bean name="profileController" class="org.example.controller.ProfileController">
-        <property name="aService" ref="adminService"/>
-    </bean>
-    <bean name="terminalController" class="org.example.controller.TerminalController">
-        <property name="terminalService" ref="terminalService"/>
-    </bean>
-    <bean name="transactionController" class="org.example.controller.TransactionController">
-        <property name="cardRepository" ref="cardRepository"/>
-        <property name="transactionService" ref="transactionService"/>
-        <property name="transactionRepository" ref="transactionRepository"/>
-    </bean>
-    <bean name="adminController" class="org.example.controller.AdminController">
-        <property name="cardController" ref="cardController"/>
-        <property name="profileController" ref="profileController"/>
-        <property name="terminalController" ref="terminalController"/>
-        <property name="transactionController" ref="transactionController"/>
-    </bean>
-    <bean name="userController" class="org.example.controller.UserController">
-        <property name="uService" ref="userService"/>
-        <property name="cRepository" ref="cardRepository"/>
-    </bean>
+<!--    <bean name="authController" class="org.example.controller.AuthController" autowire="byName" scope="singleton"/>-->
+<!--    <bean name="cardController" class="org.example.controller.CardController" autowire="byType"/>-->
+<!--    <bean name="profileController" class="org.example.controller.ProfileController" autowire="byName"/>-->
+<!--    <bean name="terminalController" class="org.example.controller.TerminalController" autowire="byName"/>-->
+<!--    <bean name="transactionController" class="org.example.controller.TransactionController" autowire="byName"/>-->
+<!--    <bean name="adminController" class="org.example.controller.AdminController" autowire="byName"/>-->
+<!--    <bean name="userController" class="org.example.controller.UserController" autowire="byType"/>-->
     <!--Services-->
-    <bean name="authService" class="org.example.service.AuthService">
-        <property name="aController" ref="adminController"/>
-        <property name="pRepository" ref="profileRepository"/>
-        <property name="uController" ref="userController"/>
-    </bean>
-    <bean name="cardService" class="org.example.service.CardService">
-        <property name="cardRepository" ref="cardRepository"/>
-    </bean>
-    <bean name="userService" class="org.example.service.UserService">
-        <property name="transactionRepository" ref="transactionRepository"/>
-        <property name="cardRepository" ref="cardRepository"/>
-        <property name="terminalRepository" ref="terminalRepository"/>
-    </bean>
-    <bean name="adminService" class="org.example.service.AdminService">
-        <property name="profileRepository" ref="profileRepository"/>
-    </bean>
-    <bean name="terminalService" class="org.example.service.TerminalService">
-        <property name="terminalRepository" ref="terminalRepository"/>
-    </bean>
-    <bean name="transactionService" class="org.example.service.TransactionService">
-        <property name="cardRepository" ref="cardRepository"/>
-        <property name="transactionRepository" ref="transactionRepository"/>
-    </bean>
+<!--    <bean name="authService" class="org.example.service.AuthService" autowire="constructor"/>-->
+<!--    <bean name="cardService" class="org.example.service.CardService" autowire="byType"/>-->
+<!--    <bean name="userService" class="org.example.service.UserService" autowire="byType"/>-->
+<!--    <bean name="adminService" class="org.example.service.AdminService" autowire="constructor"/>-->
+<!--    <bean name="terminalService" class="org.example.service.TerminalService" autowire="byType" scope="singleton"/>-->
+<!--    <bean name="transactionService" class="org.example.service.TransactionService" autowire="byType"/>-->
     <!--Repository-->
-    <bean name="transactionRepository" class="org.example.repository.TransactionRepository">
-    </bean>
-    <bean name="cardRepository" class="org.example.repository.CardRepository">
-        <property name="transactionService" ref="transactionService"/>
-    </bean>
-    <bean name="profileRepository" class="org.example.repository.ProfileRepository">
-    </bean>
+    <bean name="transactionRepository" class="org.example.repository.TransactionRepository"/>
+    <bean name="cardRepository" class="org.example.repository.CardRepository" autowire="byName"/>
+    <bean name="profileRepository" class="org.example.repository.ProfileRepository"/>
     <bean name="terminalRepository" class="org.example.repository.TerminalRepository"/>
 </beans>

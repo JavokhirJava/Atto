@@ -3,7 +3,9 @@ package org.example.service;
 import org.example.container.ComponentContainer;
 import org.example.repository.TerminalRepository;
 import org.example.status.TerminalStatus;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TerminalService {
     private TerminalRepository terminalRepository;
     public void createTerminal(String code, String address) {

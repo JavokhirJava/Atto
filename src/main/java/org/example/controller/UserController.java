@@ -4,7 +4,9 @@ import org.example.container.ComponentContainer;
 import org.example.dto.Profile;
 import org.example.repository.CardRepository;
 import org.example.service.UserService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserController {
     private UserService uService;
     private CardRepository cRepository;

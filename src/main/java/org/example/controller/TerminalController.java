@@ -2,7 +2,9 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.service.TerminalService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TerminalController {
     private TerminalService terminalService;
     public void start() {

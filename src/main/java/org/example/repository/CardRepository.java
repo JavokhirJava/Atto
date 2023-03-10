@@ -8,6 +8,8 @@ import org.example.service.TransactionService;
 import org.example.status.CardStatus;
 import org.example.status.ProfileStatus;
 import org.example.status.TransactionType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,8 +21,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+@Repository
 public class CardRepository {
+    @Autowired
     private TransactionService transactionService;
     public Integer createCard(String number, String exp_date) {
         String sql = String.format
@@ -263,7 +266,4 @@ public class CardRepository {
         System.out.println(getCard(ComponentContainer.generalBalance).getBalance());
     }
 
-    public void setTransactionService(TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
 }

@@ -3,10 +3,13 @@ package org.example.service;
 import org.example.container.ComponentContainer;
 import org.example.repository.ProfileRepository;
 import org.example.status.ProfileStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class AdminService {
+    @Autowired
     private ProfileRepository profileRepository;
 
     public AdminService(ProfileRepository profileRepository) {
@@ -26,8 +29,4 @@ public class AdminService {
             profileRepository.changeStatusProfile("ACTIVE",phone);
         }
     }
-//
-//    public void setProfileRepository(ProfileRepository profileRepository) {
-//        this.profileRepository = profileRepository;
-//    }
 }

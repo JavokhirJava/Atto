@@ -6,15 +6,20 @@ import org.example.repository.CardRepository;
 import org.example.repository.TerminalRepository;
 import org.example.repository.TransactionRepository;
 import org.example.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-@Component
+@Controller
 public class TransactionController {
+    @Autowired
     private TransactionService transactionService;
+    @Autowired
     private TransactionRepository transactionRepository;
+    @Autowired
     private CardRepository cardRepository;
     public void start() {
         boolean b = true;
@@ -91,17 +96,5 @@ public class TransactionController {
     private void transactionByCard() {
         System.out.println("Enter number");
         transactionService.transactionByCard(ComponentContainer.scanString.nextLine());
-    }
-
-    public void setTransactionService(TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
-
-    public void setTransactionRepository(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
-    }
-
-    public void setCardRepository(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
     }
 }

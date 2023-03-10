@@ -21,8 +21,8 @@
 <!--    <bean name="terminalService" class="org.example.service.TerminalService" autowire="byType" scope="singleton"/>-->
 <!--    <bean name="transactionService" class="org.example.service.TransactionService" autowire="byType"/>-->
     <!--Repository-->
-    <bean name="transactionRepository" class="org.example.repository.TransactionRepository"/>
-    <bean name="cardRepository" class="org.example.repository.CardRepository" autowire="byName"/>
-    <bean name="profileRepository" class="org.example.repository.ProfileRepository"/>
-    <bean name="terminalRepository" class="org.example.repository.TerminalRepository"/>
+<!--    <bean name="transactionRepository" class="org.example.repository.TransactionRepository"/>-->
+<!--    <bean name="cardRepository" class="org.example.repository.CardRepository" autowire="byName"/>-->
+<!--    <bean name="profileRepository" class="org.example.repository.ProfileRepository"/>-->
+<!--    <bean name="terminalRepository" class="org.example.repository.TerminalRepository"/>-->
 </beans>

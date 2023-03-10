@@ -3,8 +3,9 @@ package org.example.controller;
 import org.example.container.ComponentContainer;
 import org.example.service.AdminService;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class ProfileController {
     private AdminService aService;
     public void start() {
@@ -30,10 +31,6 @@ public class ProfileController {
     private void changeProfileStatus() {
         System.out.println("Enter profile phone :");
         aService.changeProfileStatus(ComponentContainer.scanString.nextLine());
-    }
-
-    public void setaService(AdminService aService) {
-        this.aService = aService;
     }
 }
 

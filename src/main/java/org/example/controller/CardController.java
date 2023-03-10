@@ -2,10 +2,13 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.service.CardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class CardController {
+    @Autowired
     private CardService cardService;
     public void start() {
         boolean b = true;
@@ -60,9 +63,5 @@ public class CardController {
         System.out.println("Enter exp_date :");
         String exp_date = ComponentContainer.scanString.nextLine();
         cardService.updateCard(number, exp_date);
-    }
-
-    public void setCardService(CardService cardService) {
-        this.cardService = cardService;
     }
 }

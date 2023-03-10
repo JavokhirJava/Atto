@@ -5,11 +5,12 @@ import org.example.dto.Card;
 import org.example.dto.Terminal;
 import org.example.status.CardStatus;
 import org.example.status.TerminalStatus;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-
+@Repository
 public class TerminalRepository {
     public Integer createTerminal(String code, String address) {
         Connection con = ComponentContainer.getConnection();

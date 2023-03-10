@@ -5,6 +5,7 @@ import org.example.dto.Card;
 import org.example.dto.Transaction;
 import org.example.status.CardStatus;
 import org.example.status.TransactionType;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-
+@Repository
 public class TransactionRepository {
     public void saveTransaction(Transaction transaction) {
         String sql = String.format

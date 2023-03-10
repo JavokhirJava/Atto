@@ -4,11 +4,15 @@ import org.example.container.ComponentContainer;
 import org.example.dto.Profile;
 import org.example.repository.CardRepository;
 import org.example.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class UserController {
+    @Autowired
     private UserService uService;
+    @Autowired
     private CardRepository cRepository;
     public void start() {
         boolean b = true;
@@ -78,13 +82,5 @@ public class UserController {
         System.out.println("6.Transaction ");
         System.out.println("7.Make Payment ");
         return ComponentContainer.scanInteger.nextInt();
-    }
-
-    public void setuService(UserService uService) {
-        this.uService = uService;
-    }
-
-    public void setcRepository(CardRepository cRepository) {
-        this.cRepository = cRepository;
     }
 }

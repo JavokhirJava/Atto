@@ -2,13 +2,19 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class AdminController {
+    @Autowired
     private CardController cardController;
+    @Autowired
     private TerminalController terminalController;
+    @Autowired
     private ProfileController profileController;
+    @Autowired
     private TransactionController transactionController;
 
     public void start() {
@@ -47,21 +53,5 @@ public class AdminController {
 
     public void transactionMenu() {
         transactionController.start();
-    }
-
-    public void setCardController(CardController cardController) {
-        this.cardController = cardController;
-    }
-
-    public void setTerminalController(TerminalController terminalController) {
-        this.terminalController = terminalController;
-    }
-
-    public void setProfileController(ProfileController profileController) {
-        this.profileController = profileController;
-    }
-
-    public void setTransactionController(TransactionController transactionController) {
-        this.transactionController = transactionController;
     }
 }

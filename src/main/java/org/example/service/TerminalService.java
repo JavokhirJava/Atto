@@ -3,10 +3,13 @@ package org.example.service;
 import org.example.container.ComponentContainer;
 import org.example.repository.TerminalRepository;
 import org.example.status.TerminalStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class TerminalService {
+    @Autowired
     private TerminalRepository terminalRepository;
     public void createTerminal(String code, String address) {
         terminalRepository.createTerminal(code, address);
@@ -37,9 +40,5 @@ public class TerminalService {
         } else if (terminalRepository.getTerminal(code).getStatus().toString().equals(TerminalStatus.BLOCKED.toString())) {
             terminalRepository.changeStatusTerminal(TerminalStatus.ACTIVE.toString(), code);
         }
-    }
-
-    public void setTerminalRepository(TerminalRepository terminalRepository) {
-        this.terminalRepository = terminalRepository;
     }
 }

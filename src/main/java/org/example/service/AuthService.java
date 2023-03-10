@@ -5,13 +5,17 @@ import org.example.controller.AdminController;
 import org.example.controller.UserController;
 import org.example.dto.Profile;
 import org.example.repository.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
+    @Autowired
     ProfileRepository profileRepository;
+    @Autowired
     AdminController adminController;
+    @Autowired
     UserController userController;
 
     public AuthService(ProfileRepository profileRepository, AdminController adminController, UserController userController) {

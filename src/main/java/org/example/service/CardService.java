@@ -3,10 +3,13 @@ package org.example.service;
 import org.example.container.ComponentContainer;
 import org.example.repository.CardRepository;
 import org.example.status.CardStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class CardService {
+    @Autowired
     private CardRepository cardRepository;
     public void createCard(String number, String exp_date) {
         cardRepository.createCard(number, exp_date);
@@ -35,9 +38,5 @@ public class CardService {
     }
     public void deleteCard(String cardNumber) {
         cardRepository.deleteCard(cardNumber);
-    }
-
-    public void setCardRepository(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
     }
 }

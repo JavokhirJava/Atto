@@ -9,15 +9,20 @@ import org.example.repository.TerminalRepository;
 import org.example.repository.TransactionRepository;
 import org.example.status.CardStatus;
 import org.example.status.TransactionType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-@Component
+@Service
 public class UserService {
+    @Autowired
     private CardRepository cardRepository;
+    @Autowired
     private TransactionRepository transactionRepository;
+    @Autowired
     private TerminalRepository terminalRepository;
     public void addCard(String cardNumber, Profile profile) {
         if (cardRepository.getCard(cardNumber) == null) {
@@ -81,18 +86,4 @@ public class UserService {
             cardRepository.makePayment(number,code,ComponentContainer.TOLL,cardRepository.getCard(number));
         }
     }
-
-    public void setCardRepository(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
-    }
-
-    public void setTransactionRepository(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
-    }
-
-    public void setTerminalRepository(TerminalRepository terminalRepository) {
-        this.terminalRepository = terminalRepository;
-    }
 }
-
-//card_number,amount,terminal_code,type,created_date

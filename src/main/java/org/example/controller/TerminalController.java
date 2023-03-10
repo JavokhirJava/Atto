@@ -2,10 +2,13 @@ package org.example.controller;
 
 import org.example.container.ComponentContainer;
 import org.example.service.TerminalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class TerminalController {
+    @Autowired
     private TerminalService terminalService;
     public void start() {
         boolean b = true;
@@ -61,7 +64,4 @@ public class TerminalController {
         terminalService.deleteTerminal();
     }
 
-    public void setTerminalService(TerminalService terminalService) {
-        this.terminalService = terminalService;
-    }
 }
